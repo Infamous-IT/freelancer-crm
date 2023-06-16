@@ -1,25 +1,19 @@
 import mongoose from "mongoose";
 import BigNumber from "bignumber.js";
-import {categories} from "./enum/category.js";
 
-const usersSchema = new mongoose.Schema(
+const customersSchema = new mongoose.Schema(
     {
-        name: {
+        fullName: {
             type: String,
             required: true,
             minLength: 1
-        },
-        surname: {
-            type: String,
-            required: true,
-            minLength: 3
         },
         county: {
             type: String,
             required: true,
             minLength: 3,
         },
-        city: {
+        telegramNickname: {
             type: String,
             minLength: 3
         },
@@ -28,34 +22,20 @@ const usersSchema = new mongoose.Schema(
             contentType: { type: String },
             path: { type: String }
         },
-        phone: {
-            type: String,
-        },
-        jobsTitle: [{
-            type: String,
-            enum: Object.values(categories)
-        }],
-        rating: {
-            type: String
-        },
-        totalIncome: {
+        totalPayments: {
             type: BigNumber,
             default: 0
-        },
-        isOnline: {
-            type: Boolean,
-            default: false
         },
         orders: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Orders'
         }],
-        customers: [{
+        users: [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Customers'
+            ref: 'Users'
         }]
     },
     { timestamps: true }
 );
 
-export default mongoose.model('Users', usersSchema);
+export default mongoose.model('Customers', customersSchema);
