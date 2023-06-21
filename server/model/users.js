@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import BigNumber from "bignumber.js";
 import {categories} from "./enum/category.js";
 
 const usersSchema = new mongoose.Schema(
@@ -39,7 +38,7 @@ const usersSchema = new mongoose.Schema(
             type: String
         },
         totalIncome: {
-            type: BigNumber,
+            type: Number,
             default: 0
         },
         isOnline: {
