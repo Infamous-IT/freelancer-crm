@@ -1,49 +1,12 @@
-import express from "express";
-import {createCustomer, getAllCustomers, getCustomerById, removeCustomer, updateCustomer} from "../service/customer.js";
-
+import * as customerController from "../controller/customer.js";
+import express from 'express';
 
 const router = express.Router();
 
-
-router.get("/", async (req, res, next) => {
-    try {
-        return getAllCustomers();
-    }catch (error){
-        next(error);
-    }
-} )
-
-router.delete("/:id", async (req, res, next) => {
-    try {
-        return  getCustomerById(req.params.id);
-    }catch (error){
-        next(error);
-    }
-})
-
-router.patch("/:id", async (req, res, next) => {
-    try {
-        return removeCustomer(req.params.id)
-    }catch (error){
-        next(error);
-    }
-})
-
-router.post("/", async (req, res, next) => {
-    try {
-        const newCustomer = {...req.body}
-        await createCustomer(newCustomer)
-    }catch (error){
-        next(error);
-    }
-})
-
-router.patch("/:id", async (req, res, next) => {
-    try {
-        return updateCustomer(req.params.id, {...req.body})
-    }catch (error){
-        next(error);
-    }
-})
+router.get('/', customerController.getAll);
+router.get('/:id', customerController.getById);
+router.post('/', customerController.createCustomer);
+router.patch('/:id', customerController.updateCustomer);
+router.delete('/:id', customerController.removeCustomer);
 
 export default router;
