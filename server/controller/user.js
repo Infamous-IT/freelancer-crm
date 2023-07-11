@@ -23,12 +23,35 @@ export const getById = async (req, res, next) => {
     }
 }
 
-export const createUser = async (req, res, next) => {
-    const userData = req.body;
-
+export const register = async (req, res, next) => {
     try {
-        const createdUser = await userService.createUser(userData);
-        res.status(200).json(createdUser);
+        const {password } = req.body;
+        await userService.registerUser(password, req.body);
+        res.status(200).send('User has been created!')
+    } catch (e) {
+        next(e);
+    }
+}
+
+export const login = async (req, res, next) => {
+    try {
+        const { username, password } = req.body;
+        const { token, details } = await userService.loginUser(username, password);
+
+        res.cookie('access_token', token, {
+            httpOnly: true,
+        }).status(200).json({ details });
+    } catch (e) {
+        next(e);
+    }
+};
+
+export const logout = async (req, res, next) => {
+    try {
+        const userId = req.user.id;
+        await userService.logout(userId);
+        res.clearCookie('access_token');
+        res.status(200).json({message: "User has been logged out!"});
     } catch (e) {
         next(e);
     }

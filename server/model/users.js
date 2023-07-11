@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import {categories} from "./enum/category.js";
+import {roles} from "./enum/roles.js";
 
 const usersSchema = new mongoose.Schema(
     {
@@ -13,7 +14,14 @@ const usersSchema = new mongoose.Schema(
             required: true,
             minLength: 3
         },
-        county: {
+        username: {
+            type: String,
+        },
+        password: {
+            type: String,
+            required: true
+        },
+        country: {
             type: String,
             required: true,
             minLength: 3,
@@ -34,6 +42,10 @@ const usersSchema = new mongoose.Schema(
             type: String,
             enum: Object.values(categories)
         }],
+        role: {
+            type: String,
+            enum: Object.values(roles)
+        },
         rating: {
             type: String
         },
@@ -56,5 +68,10 @@ const usersSchema = new mongoose.Schema(
     },
     { timestamps: true }
 );
+
+usersSchema.pre('save', function (next) {
+    this.username = this.name + this.surname;
+    next();
+});
 
 export default mongoose.model('Users', usersSchema);
