@@ -16,11 +16,10 @@
             </v-card-item>
             <v-card-text>
                 <p class="user-info__country">{{ user_info_data.country }}, {{ user_info_data.city }}</p>
-                <p class="user-info__phone">{{ user_info_data.phone }}</p>
                 <p class="user-info__rating">Rating: {{ user_info_data.rating }}</p>
                 <p class="user-info__total-income">Total income: {{ user_info_data.totalIncome }}</p>
             </v-card-text>
-            <v-btn>View more details</v-btn>
+            <button class="user-info__view-more">View more details</button>
         </v-card>
     </div>
 </template>
@@ -50,13 +49,33 @@
         margin: 15px;
         padding: 15px;
         width: 300px;
-        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-        align-items: flex-start;
+        box-shadow: #5E5DF0 0 10px 20px -10px;
+        align-items: flex-start;    
+    }
+    .user-info__view-more {
+        background: #5E5DF0;
+        border-radius: 999px;
+        margin: 10px auto;
+        box-shadow: #5E5DF0 0 10px 20px -10px;
+        box-sizing: border-box;
+        color: #FFFFFF;
         cursor: pointer;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 24px;
+        opacity: 1;
+        outline: 0 solid transparent;
+        padding: 8px 18px;
+        border: 0;
+        &:hover {
+            color: #5E5DF0;
+            background-color: #FFFFFF; 
+        }
     }
 
     .user-info__jobs-title, .user-info__country, .user-info__phone, .user-info__rating, .user-info__total-income {
         text-align: left;
         margin-bottom: 10px;
     }
+
 </style>

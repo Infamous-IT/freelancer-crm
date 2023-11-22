@@ -13,6 +13,7 @@
     "material-icons": "^1.13.12",
     "node-sass": "^9.0.0",
     "pinia": "^2.1.7",
+    "quasar": "^2.14.0",
     "vue": "^3.2.13",
     "vue-cli-plugin-vuetify": "^2.5.8",
     "vue-router": "^4.2.5",
