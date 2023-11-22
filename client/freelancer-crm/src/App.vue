@@ -1,13 +1,16 @@
 <template>
-  <FreelancerWrapper/>
+  <div id="app">
+    <FreelancerWrapper />
+  </div>
 </template>
 
 <script>
 import FreelancerWrapper from './components/FreelancerWrapper.vue';
+
 export default {
   name: 'App',
   components: {
-    FreelancerWrapper
+    FreelancerWrapper,
   }
 }
 </script>

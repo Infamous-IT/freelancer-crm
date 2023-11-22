@@ -1,18 +1,16 @@
 <template>
     <div class="freelancer-wrapper">
-        {{ title }}
+        <UserList/>
     </div>
 </template>
 
 <script>
+import UserList from './user/UserList.vue';
     export default {
         name: 'FreelancerWrapper',
-        components: {},
-        data() {
-            return {
-                title: 'Freelancer Wrapper Component!'
-            }
-        }
+        components: {   
+            UserList
+        },
     }
 </script>
 
